@@ -1,0 +1,98 @@
+﻿@model myauth.Models.Produit
+@{
+    ViewBag.Title = "details_product";
+    Layout = "~/Views/Shared/_propr.cshtml";
+}
+<div class="single-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <div class="line-dec"></div>
+                    <h1>@Model.Titre</h1>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-slider">
+                    <div id="slider" class="flexslider">
+                        <img id="expandedImg" src="@Url.Action("RenderImage",new { id = Model.IdProduit  , t=0})" style="width:100%">
+
+                        @for (int i = 0; i < ViewBag.c; i++)
+                        {
+                            <img id="expandedImg" style="height:min-content; width:100%">
+
+                        }
+
+                    </div>
+                    <div id="carousel" class="flexslider">
+                        <ul class="slides">
+                            @for (int i = 0; i < ViewBag.c; i++)
+                            { 
+                                <li><a data-target="#pic-2" data-toggle="tab"><img style="height:fit-content" src="@Url.Action("RenderImage",new { id = Model.IdProduit  , t=i})" onclick="myFunction(this);" /></a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="right-content">
+                    <h4>@Model.Titre</h4>
+                    <h6>$ @Model.Prix</h6>
+                    <p>@Model.Description </p>
+                    <div class="down-content">
+                        <div class="categories">
+                            <h6>Category: <span>
+                                @using myauth.Models;
+                                
+                               @foreach (ProductCategory cat in Model.ProductCategories)
+                               {
+                                   ApplicationDbContext db = new ApplicationDbContext();
+
+                                    <a>@db.Categories.Find(cat.IdCategorie).Nom</a>
+
+
+                                }
+                           </span></h6>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-12">
+        <div class="section-heading">
+            <div class="line-dec"></div>
+            <h1>liste des commentaires </h1>
+        </div>
+    </div>
+    @foreach (var item in ViewBag.comments)
+    {
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="user d-flex flex-row align-items-center"> <span><small class="font-weight-bold text-primary">@item.Client.User.Email:</small> <small class="font-weight-bold">@item.Message</small></span> </div> <small>2 days ago</small>
+        </div>
+    }
+
+
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+        });
+        function myFunction(imgs) {
+            // Get the expanded image
+            var expandImg = document.getElementById("expandedImg");
+            // Get the image text
+
+            // Use the same src in the expanded image as the image being clicked on from the grid
+            expandImg.src = imgs.src;
+
+            expandImg.parentElement.style.display = "block";
+        }
+    </script>
+

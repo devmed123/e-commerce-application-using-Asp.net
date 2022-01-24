@@ -1,0 +1,59 @@
+﻿@model IPagedList<myauth.Models.Produit>
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_propr.cshtml";
+}
+@using PagedList;
+@using PagedList.Mvc;
+<div class="featured-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="section-heading">
+                    <div class="line-dec"></div>
+                    <h1> products List</h1>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+<div class="featured container no-gutter">
+    <div class="row posts">
+        @foreach (var item in Model)
+        {
+
+        <div class="item new col-md-4">
+         
+            <div class="featured-item">
+                <img style="height:200px" src="@Url.Action("RenderImage",new { id = item.IdProduit  , t=0})" alt="">
+                <h4>@item.Titre</h4>
+                <h6>$@item.Prix</h6>
+                <button class=" btn btn-rounded btn-success">    @Html.ActionLink("details", "details_product", new { id = item.IdProduit })</button> 
+                <button class=" btn btn-rounded btn-warning">  @Html.ActionLink("Edit2", "Edit2", new { id = item.IdProduit })</button>  
+                <button class= " btn  btn-rounded btn-danger">  @Html.ActionLink("Delete", "Delete", new { id = item.IdProduit })</button>  
+            </div>
+
+            
+           
+        </div>
+
+        }
+    </div>
+</div>
+<div class="page-navigation ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.PagedListPager(Model, i => Url.Action("index2", new { i }), new PagedListRenderOptions
+                 {
+                     DisplayLinkToIndividualPages = true,
+                     DisplayPageCountAndCurrentLocation = false,
+                     MaximumPageNumbersToDisplay = 10,
+                     LiElementClasses = new string[] { "page-item" },
+                 })
+            </div>
+        </div>
+    </div>
+</div>
+

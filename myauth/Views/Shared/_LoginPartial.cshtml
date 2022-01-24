@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNet.Identity
+@using myauth.Models
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        ApplicationDbContext db = new ApplicationDbContext();
+        String a = User.Identity.GetUserId();
+        <a>@db.Users.Where(e => e.Id == a).First().Email</a>
+        <button class="btn btn-danger"><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a></button>
+
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li> @Html.ActionLink("S'inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

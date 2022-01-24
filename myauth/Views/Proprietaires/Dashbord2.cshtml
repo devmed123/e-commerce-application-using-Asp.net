@@ -1,0 +1,60 @@
+﻿@model IEnumerable<myauth.Models.Commande>
+
+@{
+    ViewBag.Title = "Dashbord2";
+    Layout = "~/Views/Shared/_propr.cshtml";
+}
+<div class="featured-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="section-heading">
+                    <div class="line-dec"></div>
+                    <h1> orders List</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="featured container no-gutter">
+   
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th scope="col">Clinet Email </th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Client Adresse</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+
+                    <td><b>@item.Client.User.UserName</b></td>
+                    <td><b> @Html.ActionLink(@item.Produit.Titre, "details_product", new { id = @item.Produit.IdProduit })</b></td>
+                    <td><b>@item.Quantite</b></td>
+                    <td>@item.Client.User.PhoneNumber</td>
+                    <td>16:00, 12 NOV 2018</td>
+                    <td><button class="btn-link">  @Html.ActionLink("responde", "Contact", new { id = @item.IdCommande})</button></td>
+
+                </tr>
+                }
+
+
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+        
+      
+
