@@ -1,0 +1,405 @@
+﻿@model IEnumerable<myauth.Models.Produit>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ClientView.cshtml";
+
+}
+
+
+
+
+<head>
+    <!--
+
+    Template 2082 Pure Mix
+
+    http://www.tooplate.com/view/2082-pure-mix
+
+    -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!-- Site title
+    ================================================== -->
+    <!-- Bootstrap CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/bootstrap.min.css">
+
+    <!-- Animate CSS
+    ================================================== -->
+    @*<link rel="stylesheet" href="css/animate.min.css">*@
+
+    <!-- Font Icons CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/client/css/ionicons.min.css">
+
+    <!-- Main CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/style.css">
+
+    <!-- Google web font
+    ================================================== -->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+
+    <!-- Preloader section
+    ================================================== -->
+    @*Navigation section*@
+
+    <div class="container1">
+
+
+        <div class="left" style="margin-top:10px; margin-left:10px;">
+
+            @using (Html.BeginForm("getSelectedValue", "Default", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <input type="submit" value="Go to" style="background-color:#99906a; color:floralwhite;"/>
+
+            @Html.DropDownList("LogOffTime", (List<SelectListItem>)ViewBag.categ, "Select Category")
+
+            }
+
+
+        </div>
+        <div class="right" style=" margin-right:10px;">
+            @using (Html.BeginForm("Rechercher","Default", FormMethod.Post))
+    {
+            <div class="olSearch fr">
+                <input type="text" name="recherche" id="recherche" placeholder="Search Product" class="inputComn form-control" />
+                <div class="searchIcon" >
+                    <button type="submit" class="searchBtn">
+                        <i class="fa fa-search" ></i>
+                    </button>
+                </div>
+            </div>}
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <style>
+
+        .container1 {
+            display: flex; /* establish flex container */
+            flex-direction: row; /* default value; can be omitted */
+            flex-wrap: nowrap; /* default value; can be omitted */
+            justify-content: space-between; /* switched from default (flex-start, see below) */
+        }
+
+        .contanier1 div {
+            position: center;
+        }
+
+
+
+        .olSearch {
+            width: 100%;
+        }
+
+            .olSearch .inputComn {
+                margin-bottom: 0;
+            }
+
+        .inputComn {
+            color: black;
+            font-size: 14px;
+            height: 35px;
+            width: 100%;
+           
+            padding: 0 15px;
+            margin-right: -5px;
+        }
+
+        .searchIcon {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .searchBtn {
+            background-color: #99906a;
+            border: 0 none;
+            color: #fff;
+            font-size: 16px;
+           
+            text-transform: uppercase;
+            cursor: pointer;
+            height: 35px;
+            width: 30px;
+            align-items: center;
+            justify-content: center;
+            margin-right: -10px;
+            border-radius: 2px;
+        }
+
+            .searchBtn:hover {
+                background-color: #326987;
+            }
+
+        .olSearch {
+            position: relative;
+        }
+    </style>
+
+    @*Header section
+        ==================================================*@
+    <section id="header" class="header-one">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+                    <div class="header-thumb">
+                        <h1 class="wow fadeIn" data-wow-delay="1.6s">Welcome to From M 2 U</h1>
+                        <h3 class="wow fadeInUp" data-wow-delay="1.9s">A shop From Me To You</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    @*Portfolio section
+        ==================================================*@
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12">
+
+                    <!-- iso section -->
+                    <div class="iso-section wow fadeInUp" data-wow-delay="2.6s">
+
+                        <ul class="filter-wrapper clearfix">
+                            <li><a data-filter="*" class="selected opc-main-bg">OUR POPULAR CATEGORIES</a></li>
+
+                        </ul>
+
+                        <!-- iso box section -->
+                        <div class="iso-box-section wow fadeInUp" data-wow-delay="1s">
+                            <div class="iso-box-wrapper col4-iso-box">
+
+                                <div class="iso-box photoshop branding col-md-4 col-sm-6">
+                                    <div class="portfolio-thumb">
+                                        <img src="~/client/images/clothes.jpg" class="img-responsive">
+                                        <div class="portfolio-overlay">
+                                            <div class="portfolio-item">
+                                                <h2> @Html.ActionLink("CLOTHES","Categ2",new{ id=1})</h2>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="iso-box graphic template col-md-4 col-sm-6">
+                                    <div class="portfolio-thumb" style="text-align:center;">
+                                        <img src="~/client/images/electronics.jpg" class="img-responsive">
+                                        <div class="portfolio-overlay">
+                                            <div class="portfolio-item" >
+
+                                                <h2> @Html.ActionLink("ELECTRONICS","Categ2",new{ id=2})</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="iso-box graphic branding col-md-4 col-sm-6">
+                                    <div class="portfolio-thumb">
+                                        <img src="~/client/images/home.jpg" class="img-responsive">
+                                        <div class="portfolio-overlay">
+                                            <div class="portfolio-item">
+                                                <h2> @Html.ActionLink("HOME","Categ2",new{ id=3})</h2>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Deal section
+    ================================================== -->
+    <section >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+
+                    <!-- iso section -->
+                    <div class="iso-section wow fadeInUp" data-wow-delay="2.6s">
+
+                        <ul class="filter-wrapper clearfix" style="text-align:center;">
+                            <li><a  data-filter="*" class="selected opc-main-bg" >GET THE DEAL</a></li>
+
+                        </ul>
+                        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+                            <div class="header-thumb" style="
+    width:1000px; margin-left:-200px;" >
+                                <img src="~/Images/free.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Products section
+    ================================================== -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12">
+
+                    <!-- iso section -->
+                    <div class="iso-section wow fadeInUp" data-wow-delay="2.6s">
+
+                        <ul class="filter-wrapper clearfix">
+                            <li><a  data-filter="*" class="selected opc-main-bg">LATEST PRODUCTS</a></li>
+
+                        </ul>
+
+                        @foreach(var item in Model.Take(4))
+                        {
+                        <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+                            <div class="thumbnail product-item" style="height:390px">
+                                <div class="img-box">
+                                    <img src="@Url.Action("RenderImage",new { id = item.IdProduit })" class="img-responsive" style="height:230px">
+                                    <p class="bottom-left"><span>@item.DateAddition.ToShortDateString()</span></p>
+
+
+                                </div>
+                                <div class="thumb-content">
+                                    <h4>@item.Titre </h4>
+                                    <p class="item-price"><span>@item.Prix Dhs</span></p>
+                                    <p class="bottom-right">@Html.ActionLink("Details", "Details2", new { id = item.IdProduit })</p>
+                                    <div class="product-item-badge">New</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                    </div>
+                    <style>
+                        .product-item {
+                            /* Add shadows to create the "card" effect */
+                            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                            transition: 0.3s;
+                        }
+
+                            /* On mouse-over, add a deeper shadow */
+                            .product-item:hover {
+                                box-shadow: 0 8px 16px 0 #666;
+                            }
+                        
+                        .thumb-content {
+                            justify-content: center;
+                            font-size: large;
+                        }
+
+                        .bottom-right {
+                            position: absolute;
+                            bottom: 8px;
+                            right: 16px;
+                            color: seagreen;
+                            font-family: 'Calisto MT';
+                            font-size: medium;
+                        }
+
+                        .img-box {
+                            position: relative;
+                            text-align: center;
+                            color: white;
+                        }
+
+                        /* Bottom left text */
+                        .bottom-left {
+                            position: absolute;
+                            bottom: 2px;
+                            background-color: #252121;
+                            color: whitesmoke;
+                            font-size: 12px;
+                            border-radius: 2px;
+                        }
+
+                        .thumb-content .product-item-badge {
+                            position: absolute;
+                            top: 4px;
+                            left: 4px;
+                            padding: 5px 12px 6px;
+                            color: #ffffff;
+                            font-size: 12px;
+                            line-height: 14px;
+                            font-weight: 600;
+                            background: #cb3232;
+                            -webkit-border-radius: 4px 0 4px 0;
+                            -moz-border-radius: 4px 0 4px 0;
+                            -o-border-radius: 4px 0 4px 0;
+                            border-radius: 4px 0 4px 0;
+                        }
+
+                        .product-item {
+                            position: relative;
+                        }
+
+                            .product-item .caption h5 {
+                                font-weight: 600;
+                                font-size: 16px;
+                                line-height: 20px;
+                                border-top: 2px solid #333;
+                                margin-top: 10px;
+                                padding-top: 10px;
+                            }
+
+                            .product-item .caption .product-item-price {
+                                font-size: 14px;
+                                line-height: 16px;
+                                font-weight: 400;
+                            }
+                    </style>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+       
+    </section>
+    <!-- Javascript
+    ================================================== -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/imagesloaded.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/custom.js"></script>
+
+</body>
+</html>
+

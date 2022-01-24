@@ -1,0 +1,210 @@
+﻿@model myauth.Models.Categorie
+@{
+    ViewBag.Title = "Categ2";
+    Layout = "~/Views/Shared/_ClientView.cshtml";
+}
+
+
+
+
+
+<h2 style="color:black;">Category:@Model.Nom</h2>
+
+<head>
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <!--
+
+    Template 2082 Pure Mix
+
+    http://www.tooplate.com/view/2082-pure-mix
+
+    -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!-- Site title
+    ================================================== -->
+    <!-- Bootstrap CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/bootstrap.min.css">
+
+    <!-- Animate CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/animate.min.css">
+
+    <!-- Font Icons CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/client/css/ionicons.min.css">
+
+    <!-- Main CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/style.css">
+
+    <!-- Google web font
+    ================================================== -->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+
+</head>
+
+
+<style>
+    .product-item {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+        /* On mouse-over, add a deeper shadow */
+        .product-item:hover {
+            box-shadow: 0 8px 16px 0 #666;
+        }
+    .thumb-content {
+        text-align: center;
+        font-size:medium;
+        font-weight: bold;
+
+    }
+
+    .container1 {
+        display: flex; /* establish flex container */
+        flex-direction: row; /* default value; can be omitted */
+        flex-wrap: nowrap; /* default value; can be omitted */
+        justify-content: space-between; /* switched from default (flex-start, see below) */
+    }
+
+    .contanier1 div {
+        position: center;
+    }
+
+
+
+    .olSearch {
+        width: 100%;
+    }
+
+        .olSearch .inputComn {
+            margin-bottom: 0;
+        }
+
+    .inputComn {
+        color: black;
+        font-size: 14px;
+        height: 35px;
+        width: 100%;
+        padding: 0 15px;
+        margin-right: -5px;
+    }
+
+    .searchIcon {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .searchBtn {
+        background-color: #99906a;
+        border: 0 none;
+        color: #fff;
+        font-size: 16px;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        cursor: pointer;
+        height: 35px;
+        width: 30px;
+        margin-right: -10px;
+        border-radius: 2px;
+       
+    }
+
+        .searchBtn:hover {
+            background-color: #326987;
+        }
+
+    .olSearch {
+        position: relative;
+    }
+   
+</style>
+
+
+
+    
+<body>
+    
+    <div class="container1">
+
+
+        <div class="left" style="margin-top:10px; margin-left:10px;">
+
+            @using(Html.BeginForm("getSelectedValue", "Default", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <input type="submit" value="Go to" style="background-color:#99906a; color:floralwhite;" />
+
+            @Html.DropDownList("LogOffTime", (List<SelectListItem>)ViewBag.categ, "Select Category")
+
+            }
+
+
+        </div>
+        <div class="right" style=" margin-right:10px;">
+            @using (Html.BeginForm("Rechercher","Default", FormMethod.Post))
+    {
+            <div class="olSearch fr">
+                <input type="text" name="recherche" id="recherche" placeholder="Search Product" class="inputComn form-control" />
+            @Html.HiddenFor(model=>model.IdCategorie) 
+                <div class="searchIcon">
+                    <button type="submit" class="searchBtn">
+                        <i class="fa fa-search" ></i>
+                    </button>
+                </div>
+            </div>}
+
+
+        </div>
+
+
+    </div>
+    @if(Model.ProductCategories!=null && Model.ProductCategories.Count()!=0){
+    foreach(var prod in Model.ProductCategories)
+{
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+
+
+        <div class="thumbnail product-item" style="height:390px">
+            <div class="img-box">
+                <img src="@Url.Action("RenderImage",new { id = prod.IdProduit,t=1 })" class="img-responsive" style="height:230px">
+
+
+
+            </div>
+            <div class="thumb-content" style="height:100px; font-size:12px;">
+                <h4>@prod.produit.Titre </h4>
+                <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                    @foreach(var obj in prod.produit.ProductCategories)
+                           {
+                    <li class="list-inline-item">@obj.Categorie.Nom</li>
+}
+                </ul>
+                <p class="item-price"><span>@prod.produit.Prix Dhs</span></p>
+                <p class="bottom-left" style="color:#e56f1b">@Html.ActionLink("More", "Details2", new { id = prod.IdProduit })</p>
+
+            </div>
+        </div>
+
+
+    </div>
+    }}else{
+    <h2 style="color:#e56f1b;">No products found</h2>
+    }
+</body>
+  

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<myauth.Models.ClientActivite>
+
+@using GridMvc.Html
+@{
+    ViewBag.Title = "ClientHistory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+<br />
+<h2 class="text-center text-secondary">Clients History</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="mx-auto h-50 ">
+
+            @*<i class="material-icons">search</i>*@
+
+            <div class="form-group">
+                <span class="icon" style="position: absolute; left: 2px; top: 0; padding:0px 0px 10px 0px; font-size: 25px; color:purple ;height: 100%; display: flex; align-items: center; justify-content: center;"><i class="material-icons">search</i></span>
+                <input type="text" name="Search" class="form-control" style="padding: 3px 0px 3px 30px; " placeholder="Search...">
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-auto h-50">
+            <input type="submit" value="Action" name="button" class="btn btn-default btn-primary btn-sm " style="width:120px;" />
+            <input type="submit" value="Id Client" name="button" class="btn btn-default btn-primary btn-sm " style="width:120px;" />
+            <input type="submit" value="Id Commande" name="button" class="btn btn-default cancel btn-primary btn-sm " style="width:120px;" />
+            <input type="submit" value="Remove filter" name="button" class="btn btn-default cancel btn-primary btn-sm " style="width:120px;" />
+
+        </div>
+    </div>
+
+}
+
+@*<table class="table">
+        <tr>
+            <th>
+                <p style="color:aliceblue">
+                    Action
+                </p>
+            </th>
+            <th>
+                <p style="color:aliceblue">
+                    @Html.DisplayNameFor(model => model.Date)
+                </p>
+            </th>
+            <th>
+                <p style="color:aliceblue">
+                    Id Commande
+                </p>
+            </th>
+            <th>
+                <p style="color:aliceblue">
+                    Id Client
+                </p>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCommande)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client_IdClient)
+                </td>
+                <td>
+                    <span class="btn btn-default btn-primary btn-sm">@Html.ActionLink("Commande Details", "CommandeDetails", new { id = item.IdCommande })</span>
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(c => c.Name).Titled("Action").Filterable(true);
+    Columns.Add(c => c.Date).Titled("Date").Filterable(true);
+    Columns.Add(c => c.IdCommande).Titled("Id Commande").Filterable(true);
+    Columns.Add(c => c.Client.IdClient).Titled("Id Client").Filterable(true);
+    Columns.Add(c => c.Client.User.UserName).Titled("Client Name").Filterable(true);
+    Columns.Add().Encoded(false).Sanitized(false).RenderValueAs(c => Html.ActionLink("Commande Details", "CommandeDetails", new { id = c.IdCommande }, new { @class = "btn btn-default btn-primary btn-sm" }));
+
+}).WithPaging(10).Sortable(true)

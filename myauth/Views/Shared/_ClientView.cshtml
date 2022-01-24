@@ -1,0 +1,138 @@
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - Mon application ASP.NET</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+       
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Nom d'application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                        <li>@Html.ActionLink("À propos de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        
+                    </ul>
+                    
+                   
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Mon application ASP.NET</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
+
+
+
+
+<head>
+    <link rel="stylesheet" href="~/client/css/style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/MyMainLayOut.css" rel="stylesheet" />*@
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="logo">
+                    <h1><a href="~/Default/Index2">M2U <span>Shopping Store</span></a></h1>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="account">
+
+                    <ul class="nav nav-pills">
+                        <li>@Html.ActionLink("Home", "Index2", "Default")</li>
+
+
+                   
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+
+
+                                if (User.IsInRole("Prop"))
+                                {
+                                    <li> @Html.ActionLink("dashbord proprietaire", "Index2", "proprietaires")</li>
+                                }
+                                else if (User.IsInRole("Admin"))
+                                {
+                                    <li> @Html.ActionLink("dashbord admin", "Accueil", "admin")</li>
+                                }
+                                else
+                                {
+
+                                }
+                            } }
+                        <li>@Html.Partial("_LoginPartial")</li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+        <footer>
+            <div class="row">
+                <div class="col-md-12 copyright">
+
+                    <div class="col-md-6 col-sm-6 copyright-left">
+                        <p> &copy; @DateTime.Now.Year - H2MStore. All rights reserved.</p>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 copyright-right">
+
+                        <ul class="list-unstyled social-icon">
+                            <li> <a href="#" target="_blank"> <i class="fa fa-facebook-square"> </i> </a> </li>
+                            <li> <a href="#"> <i class="fa fa-twitter"> </i> </a> </li>
+                            <li> <a href="#"> <i class="fa fa-google-plus"> </i> </a> </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+</body>
+
+

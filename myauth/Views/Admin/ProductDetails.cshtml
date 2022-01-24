@@ -1,0 +1,85 @@
+﻿@model myauth.Models.Produit
+
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2 class="text-center text-secondary">Product Details</h2>
+<br />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Product Card/Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Frontend/detail/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+</head>
+<body>
+
+    <div class="card-wrapper">
+        <div class="card">
+            <!-- card left -->
+            <div class="product-imgs">
+                <div class="img-display">
+                    <div class="img-showcase">
+                        @for (int i = 1; i < ViewBag.c+1; i++)
+                        {
+                            <img src="@Url.Action("RenderImage",new { id = Model.IdProduit, t=i })" />
+                        }
+                    </div>
+                </div>
+
+                <div class="img-select">
+                    @for (int i = 1; i < ViewBag.c+1; i++)
+                    {
+                        <div class="img-item">
+                            <a href="#" data-id=@i.ToString()>
+
+                                <img style="width:135px ;height:120px" src="@Url.Action("RenderImage",new { id = Model.IdProduit, t=i })" />
+                                
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- card right -->
+            <div class="product-content">
+                <h2 class=" text-white"> @Html.DisplayFor(model => model.Titre) </h2>
+
+                <div>
+
+                    <h4 class="text-white" style="display:inline-block ; margin-right:10px"> Price: </h4> <span class="text-muted" style="font-size:16px">@Html.DisplayFor(model => model.Prix)</span>
+                </div>
+
+                <div class="product-detail">
+                    <h4 class=" text-white">Description: </h4>
+
+                    <p class="text-muted" style="font-size:16px">@Html.DisplayFor(model => model.Description)</p>
+
+                    <h4 class="text-white" style="display:inline-block ; margin-right:10px">Propritaire id: </h4> <span class="text-muted" style="font-size:16px">@Html.DisplayFor(model => model.Proprietaire.IdPropritaire)</span>
+
+                    <div>
+                        <h4 class="text-white" style="display:inline-block ; margin-right:10px">Propritaire : </h4> <span class="text-muted" style="font-size:16px">@Html.DisplayFor(model => model.Proprietaire.User.UserName) </span>
+                    </div>
+                </div>
+
+                <br />
+                <br />
+                <div>
+                    <div class="form-actions no-color">
+                        <span class="btn btn-secondary"> @Html.ActionLink("  Back to Products", "ViewProducts")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Frontend/detail/script.js"></script>
+</body>
+</html>
+
+

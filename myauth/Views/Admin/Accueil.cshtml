@@ -1,0 +1,203 @@
+﻿@model IEnumerable<myauth.Models.Proprietaire>
+@{
+    ViewBag.Title = "Accueil";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2 class="text-center text-secondary">HomePage</h2>
+
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-4 col-lg-12">
+                    <a href="~/Admin/OwnerHistory">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-success">
+                                <div class="ct-chart" id="dailySalesChart"></div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Owners History</h4>
+                                <p class="card-category">
+                                    <span class="text-success">Check all your<i class="fa fa-long-arrow-up"></i> Owners </span> Activities.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-4 col-lg-12">
+                    <a href="~/Admin/OwnerProductVerication">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-warning">
+                                <div class="ct-chart" id="websiteViewsChart"></div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Verification Products</h4>
+                                <p class="card-category">Check Your owners Products here and verify them </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-4 col-lg-12">
+                    <a href="~/Admin/OwnerProfils">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-primary">
+                                <div class="ct-chart" id="completedTasksChart"></div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Owners</h4>
+                                <p class="card-category">GO in and check your owners</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <a href="~/Admin/ClientHistory">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-success card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">store</i>
+                                </div>
+                                <p class="card-category">Clients</p>
+                                <h3 class="card-title">Clients History</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <span class="text-success">Check all your<i class="fa fa-long-arrow-up"></i> Clients </span>&emsp; Activities.
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <a href="~/Admin/ClientHistory">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-primary  card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons custom">archive</i>
+                                </div>
+                                <p class="card-category">Clients</p>
+                                <h3 class="card-title">Check all your Clients</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <span class="text-primary">Check all your<i class="fa fa-long-arrow-up"></i> Clients </span>&emsp; here.
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <a href="~/Admin/ViewProducts">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons custom">gesture</i>
+                                </div>
+                                <p class="card-category">Products</p>
+                                <h3 class="card-title">Check all The Products here</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">local_offer</i> @ViewBag.prodsCount products
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <a>
+                        <div class="card card-stats">
+                            <div class="card-header card-header-info card-header-icon">
+                                <div class="card-icon">
+                                    <i class="fa fa-twitter"></i>
+                                </div>
+                                <p class="card-category">All Users</p>
+                                <h3 class="card-title">+@ViewBag.allCount</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">update</i> Just Updated
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <a>
+                        <div class="card card-stats">
+                            <div class="card-header card-header-info card-header-icon">
+                                <div class="card-icon">
+                                    <i class="fa fa-id-card-o"></i>
+                                </div>
+                                <p class="card-category">All Clients</p>
+                                <h3 class="card-title">+@ViewBag.clientsCount</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">update</i> Just Updated
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <a>
+                        <div class="card card-stats">
+                            <div class="card-header card-header-info card-header-icon">
+                                <div class="card-icon">
+                                    <i class="fa fa-diamond"></i>
+                                </div>
+                                <p class="card-category">All Owners</p>
+                                <h3 class="card-title">+@ViewBag.propCount</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">update</i> Just Updated
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">Favorite Owners</h4>
+                            <p class="card-category">Here are your favorite Owners</p>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-warning">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Products Count</th>
+                                </thead>
+                                <tbody>
+                                    @foreach (var owner in Model)
+                                    {
+                                        <tr>
+                                            <td>@owner.IdPropritaire</td>
+                                            <td>@owner.User.UserName</td>
+                                            <td>@owner.User.PhoneNumber</td>
+                                            <td>@owner.Produits.Count</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

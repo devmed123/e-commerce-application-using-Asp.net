@@ -1,0 +1,121 @@
+﻿@model myauth.Models.Commande
+
+@{
+    ViewBag.Title = "CommandeDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2 class="text-center text-secondary">Commande Details</h2>
+<hr />
+<div style="color:azure">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <dl class="dl-horizontal">
+                    <dt class="text-left">
+                        @Html.DisplayNameFor(model => model.IdCommande)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IdCommande)
+                    </dd>
+
+              
+
+                    <dt class="text-left">
+                        @Html.DisplayNameFor(model => model.Date)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Date)
+                    </dd>
+
+                    <dt class="text-left">
+                        Client Id
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Client.IdClient)
+                    </dd>
+                    <dt class="text-left">
+                        @*@Html.DisplayNameFor(model => model.Client.User.UserName)*@
+                        Client Name
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Client.User.UserName)
+                    </dd>
+
+                    <dt class="text-left">
+                        @Html.DisplayNameFor(model => model.Produit.IdProduit)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Produit.IdProduit)
+                    </dd>
+                    <dt class="text-left">
+                        @Html.DisplayNameFor(model => model.Produit.Titre)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Produit.Titre)
+                    </dd>
+                    <dt class="text-left">
+                        @Html.DisplayNameFor(model => model.Produit.ProductCategories)
+                    </dt>
+
+                    <dd>
+                        @{ int i = 1; }
+                        @foreach (var obj in Model.Produit.ProductCategories)
+                        {
+                            @Html.DisplayFor(model => obj.Categorie.Nom)
+                            
+                            if (!(i == ViewBag.count))
+                            {
+                                <span>&emsp;/&emsp;</span>
+                            }
+                            i++;
+                        }
+                    </dd>
+
+                    <dt class="text-left">
+                        Propritaire Id
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Produit.Proprietaire.IdPropritaire)
+                    </dd>
+                    <dt class="text-left">
+                        Propritaire Name
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Produit.Proprietaire.User.UserName)
+                    </dd>
+
+                </dl>
+                </div>
+                <div class="col-lg-6">
+                    <dl>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Produit.Description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Produit.Description)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="col-md-12 text-center">
+    <p class="btn btn-primary">
+        @Html.ActionLink("Check Product", "ProductDetails", new { id = Model.Produit.IdProduit })
+    </p>
+    <p class="btn btn-secondary">
+        @Html.ActionLink("Back to List", "ClientHistory")
+    </p>
+</div>

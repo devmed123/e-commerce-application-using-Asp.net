@@ -1,0 +1,223 @@
+﻿@model myauth.Models.Produit
+@{
+    ViewBag.Title = "Details2";
+    Layout = "~/Views/Shared/_ClientView.cshtml";
+}
+
+
+<head>
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <!--
+
+    Template 2082 Pure Mix
+
+    http://www.tooplate.com/view/2082-pure-mix
+
+    -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!-- Site title
+    ================================================== -->
+    <!-- Bootstrap CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/bootstrap.min.css">
+
+    <!-- Animate CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/animate.min.css">
+
+    <!-- Font Icons CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/client/css/ionicons.min.css">
+
+    <!-- Main CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/style.css">
+
+    <!-- Google web font
+    ================================================== -->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+
+    <!-- Preloader section
+    ================================================== -->
+    <!-- Navigation section
+    ================================================== -->
+    <!-- Header section
+    ================================================== -->
+    <!-- Single Project section
+    ================================================== -->
+    <section id="single-project">
+        <div class="container">
+            <div class="row">
+
+                <div class="wow fadeInUp col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4" data-wow-delay="2.3s">
+                    <div class="wrapper" style="margin-left:-15px;">
+                        <div class="project-info">
+                            <h4>Owner</h4>
+                            <p> @Html.DisplayFor(model => model.Proprietaire.User.UserName)</p>
+                        </div>
+                        <div class="project-info">
+                            <h4>Added on</h4>
+                            <p>@Html.DisplayFor(model => model.DateAddition)</p>
+                        </div>
+                        <div class="project-info">
+                            <h4>Price</h4>
+                            <p>@Html.DisplayFor(model => model.Prix) Dhs</p>
+                        </div>
+                        @if (Model.Proprietaire.Issociete == true)
+                        {
+                            <div class="project-info">
+                                <h4>Quantity</h4>
+                                <p>@Html.DisplayFor(model => model.Quantite) </p>
+                            </div>
+                        }
+
+                        <button type="button" id="buttona" class="btn btn-primary" style="background-color:#a99a67">@Html.ActionLink("Contact owner", "Contact", new { id = Model.IdProduit }) </button>
+                        <script>
+
+
+                            //  $("#email").attr("disabled", true);
+
+                            document.getElementById("buttona").attr("disabled", true);
+                        </script>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+
+                <div class="wow fadeInUp col-md-7 col-sm-7" data-wow-delay="2.6s">
+                    <div class="col-2">
+
+                        <div class="project-info">
+                            <h4>@Html.DisplayFor(model => model.Titre)</h4>
+                        </div>
+
+                        <img style="height:450px; width:600px;" src="@Url.Action("RenderImage",new { id =Model.IdProduit, t=1 })" id="ProductImg">
+                    </div>
+                    <div class="small-img-row">
+                        @for (int i = 1; i < ViewBag.count + 1; i++)
+                        {
+                            <div class="small-img-col">
+
+                                <img src="@Url.Action("RenderImage",new { id =Model.IdProduit, t=i })" style="height:50px; width:50px;" class="small-img">
+
+
+                            </div> <!-- slider-nav.// -->}
+                    </div>
+                    <div class="project-info">
+                        <h4>Description</h4>
+                        <p> @Html.DisplayFor(model => model.Description)</p>
+                    </div>
+
+
+
+                    <script>
+                        var ProductImg = document.getElementById("ProductImg");
+                        var SmallImg = document.getElementsByClassName("small-img");
+
+                        SmallImg[0].onclick = function () {
+                            ProductImg.src = SmallImg[0].src;
+                        }
+                        SmallImg[1].onclick = function () {
+                            ProductImg.src = SmallImg[1].src;
+                        }
+                        SmallImg[2].onclick = function () {
+                            ProductImg.src = SmallImg[2].src;
+                        }
+
+
+                    </script>
+                    <style>
+                        .small-img-row {
+                            display: flex;
+                        }
+
+                        .small-img-col {
+                            flex-basis: 10%;
+                            cursor: pointer;
+                            justify-content: center;
+                        }
+
+                        .single-product .col-2 .small-img-col img {
+                            padding: 0;
+                            height: 40px;
+                            width: 50px;
+                        }
+
+                        .single-product {
+                            margin-top: 80px;
+                        }
+
+                            .single-product .col-2 img {
+                                padding: 0;
+                                height: 400px;
+                                width: 400px;
+                            }
+
+                            .single-product .col-2 {
+                                padding: 20px;
+                            }
+
+                            .single-product .h3 {
+                                margin: 20px 0;
+                                font-size: 22px;
+                                font-weight: bold;
+                            }
+                    </style>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.HiddenFor(model => model.IdProduit)
+                    <div class="contact-form">
+                        <textarea name="comment"  placeholder="Write your message here ..."
+                                  rows="3" cols="50" class="form-control submit" id="texta" style=" resize: none; margin-top:10px;margin-bottom:10px;">
+</textarea>
+                        <input type="submit" value="commanter" name="commenter" class="submit center" style="
+    background-color: #c59a3c;
+        color: black;
+        font-size: large;
+        font-weight: bold;
+" />
+
+                    </div>}
+            </div>
+        </div>
+        @if (Model.Commentaires.Count>0)
+        {
+            <div class="container">
+                
+                        <h1>liste des commentaires </h1>
+             
+                @foreach (var item in Model.Commentaires)
+                {
+          
+                  
+                        <div style="border:solid; padding-left:10px;" class="user d-flex flex-row align-items-center"> <h4 style="color:saddlebrown ;"  class="font-weight-bold">@item.Client.User.UserName</h4> <h6 class="font-weight-bold">@item.Message</h6></div> 
+             
+                }
+
+
+            </div>
+
+        }
+
+    </section>
+
+   
+
+
+</body>

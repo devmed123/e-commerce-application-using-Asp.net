@@ -1,0 +1,57 @@
+﻿@model IEnumerable<myauth.Models.PropActivite>
+
+@using GridMvc.Html
+@{
+    ViewBag.Title = "OwnerHistory";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<br />
+<h2 class="text-center text-secondary">Owner History</h2>
+<br />
+
+
+
+<p class="text-white text-center">Filters</p>
+
+
+
+@using (Html.BeginForm())
+{
+<div class="row">
+    <div class="mx-auto h-50">
+
+        <div class="form-group">
+            <span class="icon" style="position: absolute; left: 2px; top: 0; padding:0px 0px 10px 0px; font-size: 25px; color:purple ;height: 100%; display: flex; align-items: center; justify-content: center;"><i class="material-icons">search</i></span>
+            <input type="text" name="Search" class="form-control" style="padding: 3px 0px 3px 30px; " placeholder="Search...">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="mx-auto h-50">
+        <input type="submit" value="Prop" name="button" class="btn btn-default btn-primary btn-sm " style="width:120px;" />
+        <input type="submit" value="PropId" name="button" class="btn btn-default btn-primary btn-sm " style="width:120px;" />
+        <input type="submit" value="Product" name="button" class="btn btn-default cancel btn-primary btn-sm " style="width:120px;" />
+        <input type="submit" value="ProductId" name="button" class="btn btn-default cancel btn-primary btn-sm " style="width:120px;" />
+        <input type="submit" value="Remove filter" name="button" class="btn btn-default cancel btn-primary btn-sm " style="width:120px;" />
+
+
+    </div>
+</div>
+
+    }
+
+@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(c => c.Proprietaire.IdPropritaire).Titled("Propritaire ID").Filterable(true);
+    Columns.Add(c => c.Proprietaire.User.UserName).Titled("Propritaire Nom").Filterable(true);
+    Columns.Add(c => c.Name).Titled("Action").Filterable(true);
+    Columns.Add(c => c.Produit.IdProduit).Titled("Produit ID").Filterable(true);
+    Columns.Add(c => c.Date).Titled("Date").Filterable(true);
+
+}).WithPaging(10).Sortable(true)
+
+
+

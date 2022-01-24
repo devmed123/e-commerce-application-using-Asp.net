@@ -1,0 +1,379 @@
+﻿@model IEnumerable<myauth.Models.Produit>
+@{
+    ViewBag.Title = "Rechercher";
+    Layout = "~/Views/Shared/_ClientView.cshtml";
+}
+
+<h2 style="color:black;">Results of your search</h2>
+
+<head>
+
+    <!--<style>
+        .card-price {
+            border-color: #999;
+            background-color: #c6cece;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+        }
+
+            .card-price > .card-heading,
+            .card-price > .card-footer {
+                color: #333;
+                background-color: #fdfdfd;
+            }
+
+            .card-price > .card-heading {
+                border-bottom: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .card-price > .card-footer {
+                border-top: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .card-price > .card-img:first-child img {
+                border-radius: 6px 6px 0 0;
+            }
+
+            .card-price > .card-left {
+                padding-right: 4px;
+            }
+
+            .card-price > .card-right {
+                padding-left: 4px;
+            }
+
+            .card-price p:last-child {
+                margin-bottom: 0;
+            }
+
+            .card-price .price {
+                text-align: center;
+                color: #337ab7;
+                font-size: 3em;
+                text-transform: uppercase;
+                line-height: 0.7em;
+                margin: 24px 0 16px;
+            }
+
+                .card-price .price small {
+                    font-size: 0.4em;
+                    color: #66a5da;
+                }
+
+            .card-price .details {
+                list-style: none;
+                margin-bottom: 24px;
+                padding: 0px 18px;
+            }
+
+                .card-price .details li {
+                    text-align: center;
+                    margin-bottom: 8px;
+                }
+
+            .card-price .buy-now {
+                text-transform: uppercase;
+                margin-bottom: 20px;
+                margin-left: 80px;
+                background-color: darkcyan;
+                width: 200px;
+            }
+
+            .card-price table {
+                margin-left: 30px;
+            }
+
+        .titre {
+            margin-left: 100px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .card-price table .price {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .card-price table .note {
+            color: #666;
+            font-size: 0.8em;
+        }
+    </style>
+
+
+
+
+    <style>
+        .card {
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+            /* On mouse-over, add a deeper shadow */
+            .card:hover {
+                box-shadow: 0 8px 16px 0 #666;
+            }
+
+        .card-caption {
+            position: absolute;
+            right: 0;
+            bottom: 16px;
+            left: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: .8125rem;
+            font-weight: 400;
+            line-height: 1.5385;
+            color: #333;
+            text-align: left;
+            background-color: #f5f5f5
+        }
+
+        .mt-50 {
+            margin-top: 50px
+        }
+
+        .mb-50 {
+            margin-bottom: 50px
+        }
+
+        .bg-teal-400 {
+            background-color: #26a69a
+        }
+
+        a {
+            text-decoration: none !important
+        }
+
+        .fa {
+            color: red
+        }
+    </style>
+
+
+
+    @*<div class="col-lg-4">
+
+
+            <div class="card card-price" style="border-radius: 50px">
+
+                <div class="card-body">
+                    <div class="lead text-center" style="color:darkcyan; font-weight:bold;">@item.Titre</div>
+                    <div class="titre"> Carte de la voiture</div>
+                    <table class="table">
+
+                        <tr><td style="font-weight: bold;">Prix</td><td class="price">@item.Prix Dhs</td></tr>
+
+                    </table>
+
+
+
+
+
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
+    <head>
+
+        <script src="~/Scripts/jquery-3.4.1.js"></script>
+        <script src="~/Scripts/modernizr-2.8.3.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+        <!--
+
+        Template 2082 Pure Mix
+
+        http://www.tooplate.com/view/2082-pure-mix
+
+        -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!-- Site title
+    ================================================== -->
+    <!-- Bootstrap CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/bootstrap.min.css">
+
+    <!-- Animate CSS
+    ================================================== -->
+    @*<link rel="stylesheet" href="~/client/css/animate.min.css">*@
+
+    <!-- Font Icons CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/client/css/ionicons.min.css">
+
+    <!-- Main CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/style.css">
+
+    <!-- Google web font
+    ================================================== -->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+
+</head>
+
+
+<style>
+    .product-item {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+        /* On mouse-over, add a deeper shadow */
+        .product-item:hover {
+            box-shadow: 0 8px 16px 0 #666;
+        }
+
+    .thumb-content {
+        text-align: center;
+        font-size: medium;
+        font-weight: bold;
+    }
+
+    .container1 {
+        display: flex; /* establish flex container */
+        flex-direction: row; /* default value; can be omitted */
+        flex-wrap: nowrap; /* default value; can be omitted */
+        justify-content: space-between; /* switched from default (flex-start, see below) */
+    }
+
+    .contanier1 div {
+        position: center;
+    }
+
+
+
+    .olSearch {
+        width: 100%;
+    }
+
+        .olSearch .inputComn {
+            margin-bottom: 0;
+        }
+
+    .inputComn {
+        color: black;
+        font-size: 14px;
+        height: 35px;
+        width: 100%;
+        padding: 0 15px;
+        margin-right: -5px;
+    }
+
+    .searchIcon {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .searchBtn {
+        background-color: #99906a;
+        border: 0 none;
+        color: #fff;
+        font-size: 16px;
+        padding: 11px 16px;
+        text-transform: uppercase;
+        cursor: pointer;
+        height: 35px;
+        width: 30px;
+        margin-right: -10px;
+        border-radius: 2px;
+        align-content: center;
+    }
+
+        .searchBtn:hover {
+            background-color: #326987;
+        }
+
+    .olSearch {
+        position: relative;
+    }
+</style>
+
+
+
+
+<body>
+    <div class="container1">
+
+
+        <div class="left" style="margin-top:10px; margin-left:10px;">
+
+            @using (Html.BeginForm("getSelectedValue", "Default", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <input type="submit" value="Go to" style="background-color:#99906a; color:floralwhite;" />
+
+            @Html.DropDownList("LogOffTime", (List<SelectListItem>)ViewBag.categ, "Select Category")
+
+            }
+
+
+        </div>
+        <div class="right" style=" margin-right:10px;">
+            @using (Html.BeginForm("Rechercher","Default", FormMethod.Post))
+    {
+            <div class="olSearch fr">
+                <input type="text" name="recherche" id="recherche" placeholder="Search Product" class="inputComn form-control" />
+                <div class="searchIcon">
+                    <button type="submit" class="searchBtn">
+                        <i class="fa fa-search" style="margin-bottom:15px; margin-right:5px;"></i>
+                    </button>
+                </div>
+            </div>}
+
+
+        </div>
+
+
+    </div>
+    @if(Model!=null && Model.Count()!=0){
+    foreach(var item in Model)
+{
+
+    <div class="col-md-3 col-sm-3 col-xs-6" style="margin-top:10px;">
+
+
+        <div class="thumbnail product-item" style="height:390px">
+            <div class="img-box">
+                <img src="@Url.Action("RenderImage",new { id = item.IdProduit,t=1 })" class="img-responsive" style="height:230px">
+
+
+
+            </div>
+            <div class="thumb-content" style="height:100px; font-size:12px;">
+                <h4>@item.Titre </h4>
+                <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                    @foreach(var obj in item.ProductCategories)
+                           {
+                    <li class="list-inline-item">@obj.Categorie.Nom</li>
+}
+                </ul>
+                <p class="item-price"><span>@item.Prix Dhs</span></p>
+                <p class="bottom-left" style="color:#e56f1b">@Html.ActionLink("More", "Details2", new { id = item.IdProduit })</p>
+
+            </div>
+        </div>
+
+
+    </div>
+    }}else{
+    <h2 style="color:#e56f1b;">No products found</h2>
+    }
+</body>

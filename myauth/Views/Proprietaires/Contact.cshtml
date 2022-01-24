@@ -1,0 +1,39 @@
+﻿@model myauth.Models.Commande
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_propr.cshtml";
+}
+
+
+
+<div class="contact-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <div class="line-dec"></div>
+                    <h1>Contact client @ViewBag.Error</h1>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="right-content">
+                    <div class="container">
+                        @using (Html.BeginForm())
+                        { 
+                            @Html.HiddenFor(model => model.IdCommande)
+                      
+                            <span class="form-control-static"> Subject: </span>
+                            <input class="form-control" type="text" name="subject" />
+                            <br />
+                            <span class="form-control-static"> Message: </span>
+                            <input class="form-control" type="text" name="message">  <br />
+                            <button type="submit" id="form-submit" class="button">Send Message</button>
+                     
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

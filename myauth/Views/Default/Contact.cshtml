@@ -1,0 +1,192 @@
+﻿@model myauth.Models.Produit
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_ClientView.cshtml";
+}
+
+
+<head>
+
+
+
+    <!--
+
+    Template 2082 Pure Mix
+
+    http://www.tooplate.com/view/2082-pure-mix
+
+    -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.intellisense.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.slim.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
+    <!-- Site title
+    ================================================== -->
+    <!-- Bootstrap CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/bootstrap.min.css">
+    <!-- Animate CSS
+    ================================================== -->
+    @*<link rel="stylesheet" href="~/client/css/animate.min.css">*@
+    <!-- Font Icons CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/client/css/ionicons.min.css">
+    <!-- Main CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/client/css/style.css">
+    <!-- Google web font
+    ================================================== -->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+
+    <!-- Preloader section
+    ================================================== -->
+    <!-- Navigation section
+    ================================================== -->
+    <!-- Header section
+    ================================================== -->
+    <!-- Contact section
+    ================================================== -->
+
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.3s">
+                <div class="google_map">
+                    <img src="~/Images/Capture.jpg" />
+                </div>
+                <div>
+                    <a style="color: black;
+        font-size: large;
+        background-color: #c59a3c;
+        border-radius:2px;" class="btn btn-default"
+                       href="~/Default/Index2">continue shopping</a>
+
+</div>
+            </div>
+
+            <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="1.6s">
+                <h1> Chat together</h1>
+                @using (Html.BeginForm()){
+                <div class="contact-form">
+
+                    <p id="texto" hidden style="font-weight: bold;
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 4px;
+
+        padding: 5px;
+        margin: 10px;
+    ">@Html.DisplayFor(model => model.Proprietaire.User.PhoneNumber) </p>
+    <input type="submit" id="btnSetText" value="call phone" name="call" class="form-control submit" style="        background-color: #c59a3c;
+        color: black;
+        font-size: large;
+        font-weight: bold;
+" />
+
+    <textarea name="description" placeholder="Write your message here ..."
+              rows="8" cols="50" class="form-control submit" id="texta" style=" resize: none; margin-top:10px;margin-bottom:10px;">
+</textarea>
+    <input type="submit" id="mal" value="send email" name="call" class="form-control submit" style="
+    background-color: #c59a3c;
+        color: black;
+        font-size: large;
+        font-weight: bold;
+" />
+
+</div>}
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $("#mal").attr("disabled", true);
+                    //$("#txtArea").hide();
+
+                    $("textarea").on("keyup", function () {
+                        var textarea_value = $("#texta").val();
+
+                        if (textarea_value != "") {
+                            $("#mal").attr("disabled", false);
+                        } else {
+                            $("#mal").attr("disabled", true);
+                        }
+                    });
+                });
+
+                //$("#btnSetText").click(function () {
+                //    $('#txtArea').show();
+
+                //});
+
+            </script>
+            @if(ViewBag.Message!=null){
+            <script>
+                $("p").show();
+
+            </script>
+
+            }
+
+
+            <div class="alert hide">
+                <span class="fa fa-check-circle"></span>
+                <span class="msg" style="font-size:small"> @ViewBag.msg</span>
+                <div class="close-btn">
+                    <span class="fa fa-times"></span>
+                </div>
+            </div>
+
+            @if (ViewBag.msg != null)
+{
+            <script>
+                $('.alert').addClass("show");
+                $('.alert').removeClass("hide");
+                $('.alert').addClass("showAlert");
+                setTimeout(function () {
+                    $('.alert').removeClass("show");
+                    $('.alert').addClass("hide");
+                }, 5000);
+
+            </script>
+}
+
+            <script>
+                $('.close-btn').click(function () {
+                    $('.alert').removeClass("show");
+                    $('.alert').addClass("hide");
+                });
+            </script>
+          
+
+        </div>
+    </div>
+    <!-- Footer section
+    ================================================== -->
+    <!-- Javascript
+    ================================================== -->
+</body>
+
+

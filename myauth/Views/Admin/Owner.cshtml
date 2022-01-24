@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Owner";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2 class="text-center text-secondary">Owner</h2>
+<br />
+
+
+@*@Html.ActionLink("Historique des Proprietaires", "OwnerHistory")
+<br />
+@Html.ActionLink("Produits des propritaires à valider", "OwnerProductVerication")*@
+
+<div class="content">
+    <div class="container-fluid">
+
+
+        <div>
+            <a href="~/Admin/OwnerHistory">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <div class="ct-chart" id="dailySalesChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Owner History</h4>
+                        <p class="card-category">
+                            <span class="text-success">Check all your<i class="fa fa-long-arrow-up"></i> Owners </span> Activities.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div>
+            <a href="~/Admin/OwnerProductVerication">
+                <div class="card card-chart">
+                    <div class="card-header card-header-warning">
+                        <div class="ct-chart" id="websiteViewsChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Verification Products</h4>
+                        <p class="card-category">Check Your owners Products here and verify them </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div>
+            <a href="~/Admin/OwnerProfils">
+                <div class="card card-chart">
+                    <div class="card-header card-header-primary">
+                        <div class="ct-chart" id="completedTasksChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Owners</h4>
+                        <p class="card-category">GO in and check your owners</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+</div>

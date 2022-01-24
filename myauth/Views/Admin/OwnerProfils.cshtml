@@ -1,0 +1,84 @@
+﻿@model IEnumerable<myauth.Models.Proprietaire>
+
+@using GridMvc.Html
+@{
+    ViewBag.Title = "OwnerPropfils";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2 class="text-center text-secondary">Owner Propfils</h2>
+<br />
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="mx-auto h-50">
+
+            <div class="form-group">
+                <span class="icon" style="position: absolute; left: 2px; top: 0; padding:0px 0px 10px 0px; font-size: 25px; color:purple ;height: 100%; display: flex; align-items: center; justify-content: center;"><i class="material-icons">search</i></span>
+                <input type="text" name="Search" class="form-control" style="padding: 3px 0px 3px 30px; " placeholder="Search...">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-auto h-50">
+
+            <input type="submit" value="Id Prop" name="button" class="btn btn-default btn-primary btn-sm " style="width:120px;" />
+            <input type="submit" value="Name Prop" name="button" class="btn btn-default cancel btn-primary btn-sm " style="width:120px;" />
+            <input type="submit" value="Favorit List" name="button" class="btn btn-default cancel btn-primary btn-sm " style="width:120px;" />
+            <input type="submit" value="Black List" name="button" class="btn btn-default cancel btn-primary btn-sm " style="width:120px;" />
+            <input type="submit" value="Remove filter" name="button" class="btn btn-default cancel btn-primary btn-sm " style="width:120px;" />
+
+
+        </div>
+    </div>
+
+
+    @Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(c => c.IdPropritaire).Titled("Id Proprietaire").Filterable(true);
+    Columns.Add(c => c.User.UserName).Titled("Nom Propritaire").Filterable(true);
+    Columns.Add(c => c.IsFavorite).Titled("In Favorit list").Filterable(true);
+    Columns.Add(c => c.IsNoir).Titled("In Black List").Filterable(true);
+    Columns.Add().Encoded(false).Sanitized(false).SetWidth(80).RenderValueAs(c =>@<button name="propIdFav" type="submit" class='btn btn-default btn-primary btn-sm' value="@c.IdPropritaire" onclick="btnLogin_Click">Add To Favorite</button>);
+Columns.Add().Encoded(false).Sanitized(false).SetWidth(80).RenderValueAs(c =>@<button name="propIdDefav" type="submit" class='btn btn-default btn-danger btn-sm' value="@c.IdPropritaire" onclick="btnLogin_Click">Remove From Favorite</button>);
+Columns.Add().Encoded(false).Sanitized(false).SetWidth(80).RenderValueAs(c =>@<button name="propIdBlack" type="submit" class='btn btn-default btn-dark btn-sm' value="@c.IdPropritaire" onclick="btnLogin_Click">Add To BlackList</button>);
+Columns.Add().Encoded(false).Sanitized(false).SetWidth(80).RenderValueAs(c =>@<button name="propIdDeblack" type="submit" class='btn btn-default btn-success btn-sm' value="@c.IdPropritaire" onclick="btnLogin_Click">Remove From BlackList</button>);
+
+}).WithPaging(10).Sortable(true)
+
+}
+
+<link rel="stylesheet" href="~/Frontend/verifiSuccess/Style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+
+
+<div class="alert hide">
+    <span class="fas fa-check-circle"></span>
+    <span class="msg" style="font-size:13px">@ViewBag.hasBeenAdded</span>
+    <div class="close-btn">
+        <span class="fas fa-times"></span>
+    </div>
+</div>
+
+@if (ViewBag.hasBeenAdded != null)
+{
+    <script>
+        $('.alert').addClass("show");
+        $('.alert').removeClass("hide");
+        $('.alert').addClass("showAlert");
+        setTimeout(function () {
+            $('.alert').removeClass("show");
+            $('.alert').addClass("hide");
+        }, 5000);
+
+    </script>
+}
+
+<script>
+    $('.close-btn').click(function () {
+        $('.alert').removeClass("show");
+        $('.alert').addClass("hide");
+    });
+</script>
